@@ -1,0 +1,32 @@
+.card {
+	max-width: 50%;
+	margin: auto;
+}
+
+.navbar-start {
+	margin: auto;
+}
+
+table {
+	margin: auto;
+}
+
+.control {
+	margin: auto;
+	width: 50%;
+	padding-bottom: 5px;
+}
+
+.pagination-list {
+	justify-content: center;
+}
+.button.is-primary {
+	display: block;
+	margin: auto;
+}
+
+.content-about {
+	display: flex;
+	justify-content: space-around;
+	padding: 100px;
+}
