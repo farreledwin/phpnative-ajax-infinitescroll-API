@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hello Bulma!</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <title>Hello!</title>
+    <link rel="stylesheet" href="bulma.min.css">
     <link rel="stylesheet" href="style.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="jquery.min.js"></script>
     <?php
         include("koneksi.php");
         ?>
@@ -33,18 +33,13 @@
           Search Data & Paginate
         </a>
   
-        
         <a href="jsontest.php" class="navbar-item">
           JSON
         </a>
-        <a href="about.php" class="navbar-item">
-          About
+        <a href="infinite-page.php" class="navbar-item">
+          Infinite Scrolling
         </a>
-        </div>
       </div>
-  
-
-    </div>
   </nav>
   <body>
 
@@ -112,10 +107,10 @@
 
     <footer class="footer">
         <div class="content has-text-centered">
-        <p>
-          Built with Bulma CSS Framework
+        <p class="is-size-4">
+          Build with Bulma CSS Framework
         </p>
-          <p>
+          <p class="is-size-5">
             <strong>Copyright</strong> © 2020 Edwin Farrel Juniawan (FR19-1). Bluejackets 19-1.
           </p>
         </div>

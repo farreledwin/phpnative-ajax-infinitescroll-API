@@ -1,11 +1,12 @@
 <?php  
+
+  include_once('koneksi.php');
+
  if(isset($_GET['offset']) && isset($_GET['limit'])) {
   $limit = $_GET['limit'];
   $offset = $_GET['offset'];
 
-  $connection = mysqli_connect('localhost', 'root', '', 'go-boetcompany');
-
-  $data = mysqli_query($connection,"SELECT * FROM goboet_comments LIMIT {$limit} OFFSET {$offset}");
+  $data = mysqli_query($koneksi,"SELECT * FROM goboet_comments LIMIT {$limit} OFFSET {$offset}");
 
   while($row=mysqli_fetch_array($data)) {
    echo ' <div class="card">
@@ -23,10 +24,8 @@
      </div>
  
      <div class="content">
-   '.$row['goboet_comment'].'<a>@bulmaio</a>.
-       <a href="#">#css</a> <a href="#">#responsive</a>
+   '.$row['goboet_comment'].'.
        <br>
-       <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
      </div>
    </div>
  </div>';
