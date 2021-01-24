@@ -8,9 +8,6 @@
     <link rel="stylesheet" href="style.css">
 
     <script type="text/javascript" src="jquery.min.js"></script>
-    <?php
-        include("koneksi.php");
-    ?>
 
   </head>
   <nav class="navbar" role="navigation" aria-label="main navigation">
@@ -47,7 +44,7 @@
   <body>
         <center><p class="is-size-1">JSON </p></center>
         <div class="control">
-        <form action="api.php" method="GET">
+        <form action="api.php" method="POST">
         <input class="input" type="text" name="employeeid" placeholder="Employee ID">
         <input type="submit" class="button is-primary" class="searchbtn" name="searchbtn" id="searchbtn" value="Search">
         </form>
@@ -60,7 +57,7 @@
           Build with Bulma CSS Framework
         </p>
           <p class="is-size-5">
-            <strong>Copyright</strong> © 2020 Edwin Farrel Juniawan (FR19-1). Bluejackets 19-1.
+            <strong>Copyright</strong> © 2021 Edwin Farrel Juniawan (FR19-1). Bluejackets 19-1.
           </p>
         </div>
       </footer>

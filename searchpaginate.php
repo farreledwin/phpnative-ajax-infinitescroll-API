@@ -9,9 +9,8 @@
 
     <script type="text/javascript" src="jquery.min.js"></script>
     <?php
-        include("koneksi.php");
-        ?>
-
+    include('koneksi.php');
+    ?>
   </head>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -52,45 +51,41 @@
         </tr>
     </thead>
     <tbody>
-    <?php
-
-    $itemperpage = 5;
+<?php
+    $itemPerPage = 5;
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
-    $startdata = ($page * $itemperpage) - $itemperpage;
-    $alldata = mysqli_query($koneksi,"SELECT * FROM goboet_employee");
-    $dataperpage = mysqli_query($koneksi,"SELECT * FROM goboet_employee LIMIT $startdata, $itemperpage");
-    $totaldata = mysqli_num_rows($alldata);
+    $allData = mysqli_query($connection, "SELECT * FROM goboet_employee");
+    $startData = ($page * $itemPerPage) - $itemPerPage;
+    $loadDataPerPage = mysqli_query($connection, "SELECT * FROM goboet_employee LIMIT $startData,$itemPerPage");
+    $totalAllData = mysqli_num_rows($allData);
+    $totalPage = ceil($totalAllData / $itemPerPage);
 
-    $calculatetotalpage = ceil($totaldata / $itemperpage);
-    $start = 0;
-    $no =$startdata+1;
-    while($data = mysqli_fetch_assoc($dataperpage)) {
-
-        ?>
+    while($row = mysqli_fetch_assoc($loadDataPerPage)) {
+      ?>
     <tr>
-      <th><?php echo $no++; ?></th>
-      <td><?php echo $data['employee_name'] ?> </td>  
-      <td><?php echo $data['employee_position'] ?> </td>
+      <td><?php echo $row['id'] ?></td>
+      <td><?php echo $row['employee_name'] ?></td>
+      <td><?php echo $row['employee_position'] ?></td>
     </tr>
     <?php
-    }
+      }
     ?>
     </table>
     <nav class="pagination" role="navigation" aria-label="pagination">
     <ul class="pagination-list">
+    <li>
     <?php
-            for($i = 1 ;$i<=$calculatetotalpage;$i++) {
-                ?>
-        <li>
-            <a href="?page=<?php echo $i ?>" class="pagination-link"><?php echo $i ?></a>
-        </li>
-        <?php
-            }
-           ?>  
+    for($i=1;$i<=$totalPage;$i++) {
+      ?>
+      <a href="?page=<?php echo $i ?>" class="pagination-link"><?php echo $i ?></a>
+    <?php
+    }    
+    ?>  
+    </li>
     </ul>
     </nav>
     <div class="control has-icons-left has-icons-right">
-        <input class="input is-success" type="text" name="datasearch" placeholder="Search Employee Name">
+        <input class="input is-success" type="text" id="datasearch" name="datasearch" placeholder="Search Employee Name">
             <span class="icon is-small is-left">
             <i class="fas fa-search"></i>
 
@@ -117,23 +112,22 @@
       </footer>
     <script type="text/javascript">
     $(document).ready(function() {
-    $("#searchbtn").click(function() {
-        console.log("test");
-        $.ajax({
-            url:"search.php",
-            type:"POST",
-            data: {
-                'search': $('input[name="datasearch"]').val()
-            },
-            success: function(data) {
+      $('#searchbtn').click(function () {
+          $.ajax({
+          type: "POST",
+          url: "search.php",
+          data: {
+            search: $('#datasearch').val()
+          },
+          success: function(data) {
                 $('.search-div').append(data);
-            }
+          }
         });
-    });
-    $("#clearbtn").click(function() {
-        $(".head-search").empty();
-        $(".data-search").empty();
-    });
+      });
+
+      $('#clearbtn').click(function () {
+        $('.search-div').empty();
+      })
     });
     </script>
 

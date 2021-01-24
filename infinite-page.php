@@ -36,8 +36,6 @@
           Infinite Scrolling
         </a>
       </div>
-  
-
     </div>
   </nav>
   <section class="hero">
@@ -54,7 +52,26 @@
   </section>
   <body>
     <div class="body">
-
+    <!-- <div class="card">
+   <div class="card-content">
+     <div class="media">
+       <div class="media-left">
+         <figure class="image is-128x128">
+           <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+         </figure>
+       </div>
+       <div class="media-content">
+         <p class="title is-4">test</p>
+         <p class="subtitle is-6">test</p>
+       </div>
+     </div>
+ 
+     <div class="content">
+   test
+       <br>
+     </div>
+   </div>
+ </div> -->
 </div>
       </body>
       <footer class="footer">
@@ -68,39 +85,44 @@
         </div>
       </footer>
       <script type="text/javascript">
-    $(document).ready( function(){
-    var flag = 0;
-    $.ajax({
-        type: "GET",
-        url: "get_data.php",
-        data: {
-        'offset':0,
-        'limit':3
-        },
-        success: function(data) {
-        $('.body').append(data);
-        flag +=3;
-        }
-    });
+        $(document).ready(function() {
+          $('.card').empty();
+          var flag = 0;
+          $.ajax({
+            type: "POST",
+            url: "get_data.php",
+            data: {
+              offset: 0,
+              limit: 3
+            },
+            success: function(data) {
+              $('.body').append(data);
+              flag+=3;
+            }
+          })
 
-    $(window).scroll(function(){
-        console.log($(window).scrollTop());
-        if($(window).scrollTop() >= $(document).height() - $(window).height()) {
-        $.ajax({
-        type: "GET",
-        url: "get_data.php",
-        data: {
-        'offset':flag,
-        'limit':3
-        },
-        success: function(data) {
-        $('.body').append(data);
-        flag +=3;
-        }
-        });
-        }
-    });
-    });
+          $(window).scroll(function() {
+            if ($(window).scrollTop() > $(document).height() - $(window).height()) {
+              $.ajax({
+                type: "POST",
+                url: "get_data.php",
+                data: {
+                  offset: flag,
+                  limit: 3
+                },
+                beforeSend: function() {
+                  console.log("ha");
+                },
+                success: function(data) {
+                  console.log("data segini "+data.length)
+                  $('.body').append(data);
+                  console.log("ini offset" +flag)
+                  flag+=3;
+                }
+              })
+            }
+          })
+        })
     </script>
 
 

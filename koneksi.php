@@ -1,9 +1,5 @@
 <?php
 
-$koneksi = mysqli_connect("localhost","prk","prk","prk");
-
-if(mysqli_connect_errno()) {
-    echo "konesi gagal";
-}
+$connection = mysqli_connect("localhost","root","","go-boetcompany");
 
 ?>

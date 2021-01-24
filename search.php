@@ -1,27 +1,36 @@
 <?php
-include_once('koneksi.php');
+include('koneksi.php');
 
-$kata = $_POST['search'];
+class Search {
 
-$test = "SELECT * FROM goboet_employee where employee_name like %$kata%";
+    function __construct() {
+
+    }
+
+    function search($connection,$keyword) {
+
+        $data = mysqli_query($connection,"SELECT * FROM goboet_employee WHERE employee_name = '%$keyword%'");
 
 
-$data = mysqli_query($koneksi,"SELECT * FROM goboet_employee where employee_name like '%$kata%'");
-
-echo " <table class='table is-centered'>
-<thead>
-    <tr class='head-search'>
-    <th><abbr title='ID'>ID</abbr></th>
-    <th>Employee Name</th>
-    <th><abbr title='Played'>Position</abbr></th>
-    </tr>
-</thead>
-<tbody>";
-while($row = mysqli_fetch_array($data)) {
-   echo ' <tr class="data-search">
-   <th>'.$row['id'].'</th>
-   <td>'.$row['employee_name'].'</td> 
-   <td>'.$row['employee_position'].'</td>
- </tr>';
-
+        echo '<table class="table is-centered">
+        <thead>
+            <tr>
+            <th><abbr title="ID">ID</abbr></th>
+            <th>Employee Name</th>
+            <th><abbr title="Played">Position</abbr></th>
+            </tr>
+        </thead>
+        <tbody>';
+        while($row = mysqli_fetch_assoc($data)) {
+            echo '<tr>
+            <td>'.$row['id'].'</td>
+            <td>'.$row['employee_name'].'</td>
+            <td>'.$row['employee_position'].'</td>
+          </tr>
+          </table>';
+        }
+    }
 }
+
+$searchObj = new Search();
+$searchObj->search($connection,$_POST['search']);
