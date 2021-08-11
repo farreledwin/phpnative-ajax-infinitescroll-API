@@ -106,7 +106,7 @@
           Build with Bulma CSS Framework
         </p>
           <p class="is-size-5">
-            <strong>Copyright</strong> © 2020 Edwin Farrel Juniawan (FR19-1). Bluejackets 19-1.
+            <strong>Copyright</strong> © 2021 Edwin Farrel Juniawan (FR19-1). Bluejackets 19-1.
           </p>
         </div>
       </footer>
